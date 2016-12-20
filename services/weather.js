@@ -24,8 +24,8 @@ WeatherService.FetchTemperature = function(date) {
         var list = WeatherService.SortedTempature(list);
         console.log("minmax",minmax);
         return {
-          "a": minmax,
-          "b": list
+          "temp": minmax,
+          "tempList": list
         }
     })
     .catch(function(err){
@@ -49,7 +49,17 @@ WeatherService.FindMinMax = function(list) {
 };
 
 WeatherService.SortedTempature = function(list){
-  return _.sortBy(list,'main.temp_max');
+  var sortedList = _.sortBy(list,'main.temp_max');
+  var arr = new Array(sortedList.length);
+  arr[0] = new Array(2);
+  arr[0][0] = "temp";
+  arr[0][1] = "time";
+  for(var i=0;i<sortedList.length;i++){
+    arr[i+1] = new Array(2);
+    arr[i+1][0] = sortedList[i].main.temp_max;
+    arr[i+1][1] = sortedList[i].dt;
+  }
+  return arr;
 };
 
 module.exports = WeatherService;

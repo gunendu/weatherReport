@@ -11,6 +11,7 @@ router.post('/weatherreport',function(req,res,next){
   var date = req.param('date');
   return WeatherService.FetchTemperature(date)
     .then(function(response){
+        console.log(response);
         return res.status(200).send({
           "result": response
         })
