@@ -8,12 +8,12 @@ var _ = require('underscore');
 
 var WeatherService = {};
 
-WeatherService.FetchTemperature = function() {
-  var url = baseurl+config.cityid+"&APPID="+config.apikey;
+WeatherService.FetchTemperature = function(date) {
+  var date = moment(date).format("YYYY-MM-DD");
+  var url = config.baseurl+config.cityid+"&APPID="+config.apikey;
   console.log(url);
   return rp(url)
     .then(function(response) {
-        var date = "2016-12-20";
         var response = JSON.parse(response);
         var list = response['list'];
         list = _.filter(list,function(item){
@@ -22,6 +22,7 @@ WeatherService.FetchTemperature = function() {
 
         var minmax = WeatherService.FindMinMax(list);
         var list = WeatherService.SortedTempature(list);
+        console.log("minmax",minmax);
         return {
           "a": minmax,
           "b": list
