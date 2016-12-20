@@ -1,0 +1,5 @@
+{
+  "cityid": "1277333",
+  "apikey": "4c04bd2590df8fd74b4ec48570e89493",
+  "baseurl": "http://api.openweathermap.org/data/2.5/forecast/city?id="
+}
