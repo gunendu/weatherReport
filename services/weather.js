@@ -27,7 +27,7 @@ WeatherService.FetchTemperature = function(date) {
         }
     })
     .catch(function(err){
-        console.log("error",err);
+        console.log("openweathermap api error",err);
     })
 };
 
